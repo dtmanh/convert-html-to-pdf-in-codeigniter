@@ -1,0 +1,68 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+CodeIgniter PDF library (Pdf.php):
+The CodeIgniter PDF library is a custom library that helps to convert HTML output to PDF using DOMPDF.
+
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * CodeIgniter PDF Library
+ *
+ * Generate PDF in CodeIgniter applications.
+ *
+ * @package            CodeIgniter
+ * @subpackage        Libraries
+ * @category        Libraries
+ * @author            CodexWorld
+ * @license            https://www.codexworld.com/license/
+ * @link            https://www.codexworld.com
+ */
+
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
+
+class Pdf
+{
+    public function __construct(){
+        
+        // include autoloader
+        require_once dirname(__FILE__).'/dompdf/autoload.inc.php';
+        
+        // instantiate and use the dompdf class
+        $pdf = new DOMPDF();
+        
+        $CI =& get_instance();
+        $CI->dompdf = $pdf;
+        
+    }
+}
+?>
+Dompdf Library (/dompdf):
+The custom PDF library uses Dompdf to generate PDF. So, include the Dompdf library to instantiate the Dompdf class.
+
+Useful Methods of Dompdf
+The following are some useful methods of Dompdf library to implement HTML to PDF conversion functionality.
+
+loadHtml(): Loads HTML content.
+$str (string) – Required. Specify the HTML to load.
+$encoding (string) – Optional. Specify encoding.
+loadHtmlFile(): Loads content from an HTML file.
+$file (string) – Required. Specify file path to load.
+output(): Returns the PDF as a string.
+$options (array) – Optional. Specify whether content stream compression will enable. (compress => 1 or 0)
+render(): Renders the HTML to PDF.
+setBasePath(): Sets the base path to include external stylesheets and images.
+$basePath (string) – The base path to be used when loading the external resources URLs.
+setPaper(): Sets the paper size & orientation.
+$size (string|array) – ‘letter’, ‘legal’, ‘A4’, etc.
+$orientation (string) – ‘portrait’ or ‘landscape’.
+stream(): Streams the PDF to the client.
+$filename (string) – Specify name of the file (without .pdf extension).
+$options (array) –
+‘compress’ => 1 or 0 – enable content stream compression.
+‘Attachment’ => 1 = download or 0 = preview
+Configuration Options
+Dompdf library has various options to configure the PDF generation. In the example code, some most used configuration options (paper size and orientation, PDF output, etc.) are used. You can see all other available options from here.
+
+Conclusion
+Our custom Dompdf library provides the easiest way to convert HTML to PDF in CodeIgniter using Dompdf. Our example code shows the most useful configuration options to generate PDF in CodeIgniter. All the available functionality of Dompdf class can be used in CodeIgniter PDF library. The example code generates the PDF from HTML of the view. You can convert any dynamic HTML and generate PDF as per your needs.
